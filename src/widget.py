@@ -1,13 +1,27 @@
-def mask_card_or_chet(card_number_or_chet_number: int | str) -> str:
+def mask_card_or_chet(card_or_chet_number: int | str) -> str:
     """Маскирует номер карты или номер счета"""
-    card_number_or_chet_number = str(card_number_or_chet_number)
+    parts = card_or_chet_number.split()
+    name = ' '.join(parts[:-1])
+    number = parts[-1]
+
+    if name.lower().startswith("счет"):
+        # Если это счет, зашифровываем последние 4 цифры
+        encrypted_number = '**' + number[-4:]
+    else:
+        # Если это карта, зашифровываем все, кроме первых 6 и последних 4 цифр
+        encrypted_number = number[:4] + ' ' + number[5:7] + '**' + ' ' + '****' + ' ' + number[-4:]
+
+    return f"{name} {encrypted_number}"
 
 
-    card_mask = card_number[0:7] + "*" * 6 + card_number[12:]
-    card_mask = card_mask[0:5] + " " + card_mask[5:9] + " " + card_mask[9:13] + " " + card_mask[13:17]
+def get_date(date_string):
+    # Разделяем строку по символу 'T' и берем первую часть (дату)
+    date_part = date_string.split('T')[0]
 
-    return card_mask
+    # Разделяем дату на год, месяц и день
+    year, month, day = date_part.split('-')
 
+    # Формируем строку в нужном формате
+    formatted_date = f"{day}.{month}.{year}"
 
-def get_date(date: int | str) -> str:
-    pass
+    return formatted_date
