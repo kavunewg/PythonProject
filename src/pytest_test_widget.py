@@ -1,5 +1,5 @@
 import pytest
-from widget import mask_card_or_chet, get_date  # Замените 'your_module' на имя вашего модуля
+from widget import mask_card_or_chet, get_date
 
 
 # Параметризованные тесты для функции mask_card_or_chet
