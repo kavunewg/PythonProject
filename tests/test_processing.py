@@ -1,5 +1,5 @@
 import pytest
-from processing import filter_by_state, sort_by_date
+from .processing import filter_by_state, sort_by_date
 
 
 # Тесты для функции filter_by_state
